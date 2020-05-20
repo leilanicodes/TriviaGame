@@ -10,4 +10,14 @@ router.get('/', async (req, res, next) => {
   }
 });
 
+router.get('/:id', async (req, res, next) => {
+  try {
+    const robot = await Robot.findbyId(req.params.id);
+    if (!robot) return res.status(404);
+    res.json(robot);
+  } catch (error) {
+    next(error);
+  }
+});
+
 module.exports = router;

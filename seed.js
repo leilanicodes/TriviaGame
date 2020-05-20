@@ -1,5 +1,5 @@
 const { green, red } = require('chalk');
-const { db, Project, Robot } = require('./server/db');
+const { db, Project, Robot, RobotProject } = require('./server/db');
 const robots = require('./robot-info');
 const projects = require('./project-info');
 
@@ -9,6 +9,15 @@ const seed = async () => {
 
     await Robot.bulkCreate(robots);
     await Project.bulkCreate(projects);
+    // const robotThree = await Robot.findByPk(3);
+    // const projectOne = await Project.findByPk(1);
+    // await robotThree.addProject(projectOne);
+
+    await RobotProject.bulkCreate([
+      { projectId: 1, robotId: 2 },
+      { projectId: 2, robotId: 1 },
+      { projectId: 2, robotId: 2 },
+    ]);
   } catch (err) {
     console.log(red(err));
   }
