@@ -1,12 +1,14 @@
 const { green, red } = require('chalk');
 const { db, Project, Robot } = require('./server/db');
+const robots = require('./robot-info');
+const projects = require('./project-info');
 
 const seed = async () => {
   try {
     await db.sync({ force: true });
 
-    // seed your database here!
-
+    await Robot.bulkCreate(robots);
+    await Project.bulkCreate(projects);
   } catch (err) {
     console.log(red(err));
   }

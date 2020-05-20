@@ -3,7 +3,7 @@ import projectsReducer from './projects';
 import robotsReducer from './robots';
 
 const appReducer = combineReducers({
-  projects: projectsReducer,
+  projects: projectsReducer, //this allows us to map state to props
   robots: robotsReducer,
 });
 

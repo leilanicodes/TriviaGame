@@ -1,4 +1,4 @@
-const router = require('express').Router()
+const router = require('express').Router();
 
 // Your routes go here!
 // NOTE: Any routes that you put here are ALREADY mounted on `/api`
@@ -6,11 +6,11 @@ const router = require('express').Router()
 // this file should almost be like a table of contents for the routers you create!
 // For example:
 //
-// For your `/api/puppies` routes:
-// router.use('/puppies', require('./puppies'))
+// For your `/api/projects` routes:
+router.use('/projects', require('./projects'));
 //
-// And for your `/api/kittens` routes:
-// router.use('/kittens', require('./kittens'))
+// And for your `/api/robots` routes:
+router.use('/robots', require('./robots'));
 
 // If someone makes a request that starts with `/api`,
 // but you DON'T have a corresponding router, this piece of
@@ -18,9 +18,9 @@ const router = require('express').Router()
 // error-handling endware!
 
 router.use((req, res, next) => {
-  const err = new Error('API route not found!')
-  err.status = 404
-  next(err)
-})
+  const err = new Error('API route not found!');
+  err.status = 404;
+  next(err);
+});
 
-module.exports = router
+module.exports = router;

@@ -18,13 +18,24 @@ body {
 
 nav {
   align-items: center;
+  justify-content: space-evenly;
   background-color: #333333;
   color: #c0c0c0;
+  font-size: 20px;
   display: flex;
   height: 80px;
   padding: 10px;
 }
 
+nav a {
+  color: white;
+  text-decoration: none;
+}
+
+nav a:hover {
+  color: skyblue;
+  text-decoration: underline;
+}
 main {
   align-items: center;
   display: flex;
