@@ -9,10 +9,10 @@ export const setSingleProject = (project) => {
   };
 };
 
-export const fetchSingleProject = (id) => {
+export const fetchSingleProject = (projectId) => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.get(`/api/projects/${id}`);
+      const { data } = await axios.get(`/api/projects/${projectId}`);
       dispatch(setSingleProject(data));
     } catch (err) {
       console.log('Error fetching single project', err);
@@ -23,7 +23,7 @@ export const fetchSingleProject = (id) => {
 export default function singleProjectReducer(state = {}, action) {
   switch (action.type) {
     case SET_SINGLEPROJECT: {
-      return { project: action.project };
+      return action.project;
     }
     default:
       return state;

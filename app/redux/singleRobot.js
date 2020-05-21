@@ -3,16 +3,17 @@ import axios from 'axios';
 const SET_SINGLEROBOT = 'SET_SINGLEROBOT';
 
 export const setSingleRobot = (robot) => {
+  console.log('setting single robot in singleRobot.js');
   return {
     type: SET_SINGLEROBOT,
     robot,
   };
 };
 
-export const fetchSingleRobot = (id) => {
+export const fetchSingleRobot = (robotId) => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.get(`/api/robots/${id}`);
+      const { data } = await axios.get(`/api/robots/${robotId}`);
       dispatch(setSingleRobot(data));
     } catch (err) {
       console.log('Error fetching single robot', err);
@@ -23,7 +24,7 @@ export const fetchSingleRobot = (id) => {
 export default function singleRobotReducer(state = {}, action) {
   switch (action.type) {
     case SET_SINGLEROBOT: {
-      return { robot: action.robot };
+      return action.robot;
     }
     default:
       return state;

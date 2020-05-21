@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Robot } from './Robot';
 import { fetchRobots } from '../redux/robots';
+import { withRouter } from 'react-router-dom';
 
 export class AllRobots extends React.Component {
   componentDidMount() {
@@ -29,4 +30,4 @@ const mapDispatch = (dispatch) => ({
   getRobots: () => dispatch(fetchRobots()),
 });
 
-export default connect(mapState, mapDispatch)(AllRobots);
+export default withRouter(connect(mapState, mapDispatch)(AllRobots));
