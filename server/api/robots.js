@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const Robot = require('../db/robot');
+const Project = require('../db/project');
 
 router.get('/', async (req, res, next) => {
   try {
@@ -12,7 +13,9 @@ router.get('/', async (req, res, next) => {
 
 router.get('/:robotId', async (req, res, next) => {
   try {
-    let robot = await Robot.findByPk(req.params.robotId);
+    let robot = await Robot.findByPk(req.params.robotId, {
+      include: [{ model: Project }],
+    });
     if (!robot) return res.status(404);
     res.json(robot);
   } catch (error) {

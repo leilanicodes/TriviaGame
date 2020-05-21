@@ -15,7 +15,7 @@ module.exports = [
     priority: 3,
     completed: false,
     description:
-      'This robot wants a new friend so he will his own with his preferred customizations.',
+      'This robot wants a new friend so he will build his own with his preferred customizations.',
   },
   {
     id: 3,

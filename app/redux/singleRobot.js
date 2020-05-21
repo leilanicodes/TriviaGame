@@ -3,7 +3,6 @@ import axios from 'axios';
 const SET_SINGLEROBOT = 'SET_SINGLEROBOT';
 
 export const setSingleRobot = (robot) => {
-  console.log('setting single robot in singleRobot.js');
   return {
     type: SET_SINGLEROBOT,
     robot,

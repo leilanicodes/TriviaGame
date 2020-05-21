@@ -1,7 +1,7 @@
 import React from 'react';
 import { fetchSingleProject } from '../redux/singleProject';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { withRouter, NavLink } from 'react-router-dom';
 
 class singleProject extends React.Component {
   componentDidMount() {
@@ -16,6 +16,8 @@ class singleProject extends React.Component {
       completed,
       description,
     } = this.props.project;
+    let robots = this.props.project.robots;
+
     return (
       <div>
         <div>
@@ -24,6 +26,16 @@ class singleProject extends React.Component {
           <h2>{priority}</h2>
           <h3>{completed}</h3>
           <p>{description}</p>
+          <h3>Robots assigned to this project</h3>
+          <div>
+            {robots && robots.length
+              ? robots.map((robot) => (
+                  <div key={robot.id}>
+                    <NavLink to={`/robots/${robot.id}`}>{robot.name}</NavLink>
+                  </div>
+                ))
+              : 'There are no robots currently assigned to this project.'}
+          </div>
         </div>
       </div>
     );
