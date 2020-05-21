@@ -14,19 +14,22 @@ export class AllProjects extends React.Component {
     const projects = this.props.projects;
     return (
       <div>
+        <h1>All Projects</h1>
         {projects && projects.length
           ? projects.map((project) => (
               <Project key={project.id} project={project} />
             ))
-          : 'No Projects'}
+          : 'There are no projects registered in the database.'}
       </div>
     );
   }
 }
 
-const mapState = (reduxState) => ({
-  projects: reduxState.projects,
-});
+const mapState = (reduxState) => {
+  return {
+    projects: reduxState.projects,
+  };
+};
 
 const mapDispatch = (dispatch) => ({
   getProjects: () => dispatch(fetchProjects()),

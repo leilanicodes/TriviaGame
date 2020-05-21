@@ -3,9 +3,6 @@ import { connect } from 'react-redux';
 import { Robot } from './Robot';
 import { fetchRobots } from '../redux/robots';
 
-// Notice that we're exporting the AllRobots component twice. The named export
-// (below) is not connected to Redux, while the default export (at the very
-// bottom) is connected to Redux. Our tests should cover _both_ cases.
 export class AllRobots extends React.Component {
   componentDidMount() {
     this.props.getRobots();
@@ -15,9 +12,10 @@ export class AllRobots extends React.Component {
 
     return (
       <div>
+        <h1>All Robots</h1>
         {robots && robots.length
           ? robots.map((robot) => <Robot key={robot.id} robot={robot} />)
-          : 'No Robots'}
+          : 'There are no robots registered in the database.'}
       </div>
     );
   }

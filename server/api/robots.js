@@ -10,9 +10,9 @@ router.get('/', async (req, res, next) => {
   }
 });
 
-router.get('/:id', async (req, res, next) => {
+router.get('/:robotId', async (req, res, next) => {
   try {
-    const robot = await Robot.findbyId(req.params.id);
+    let robot = await Robot.findByPk(req.params.robotId);
     if (!robot) return res.status(404);
     res.json(robot);
   } catch (error) {
