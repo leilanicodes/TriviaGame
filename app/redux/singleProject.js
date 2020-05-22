@@ -9,6 +9,16 @@ export const setSingleProject = (project) => {
   };
 };
 
+export default function singleProjectReducer(project = {}, action) {
+  switch (action.type) {
+    case SET_SINGLEPROJECT: {
+      return action.project;
+    }
+    default:
+      return project;
+  }
+}
+
 export const fetchSingleProject = (projectId) => {
   return async (dispatch) => {
     try {
@@ -19,13 +29,3 @@ export const fetchSingleProject = (projectId) => {
     }
   };
 };
-
-export default function singleProjectReducer(project = {}, action) {
-  switch (action.type) {
-    case SET_SINGLEPROJECT: {
-      return action.project;
-    }
-    default:
-      return project;
-  }
-}

@@ -9,6 +9,9 @@ export const Robot = (props) => {
       <NavLink to={`/robots/${id}`}>
         <h2>Name: {name}</h2>
       </NavLink>
+      <button type="button" id="delete">
+        X
+      </button>
       <img src={imageUrl} />
       <h3>Fuel Type: {fuelType}</h3>
       <h3>Fuel Level: {fuelLevel}</h3>

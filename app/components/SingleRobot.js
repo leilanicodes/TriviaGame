@@ -11,7 +11,6 @@ class singleRobot extends React.Component {
   render() {
     let { name, imageUrl, fuelType, fuelLevel } = this.props.robot;
     let projects = this.props.robot.projects;
-
     return (
       <div>
         <h2>Name: {name}</h2>

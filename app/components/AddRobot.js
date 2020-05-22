@@ -1,12 +1,11 @@
 import React from 'react';
-import { fetchAddedRobot } from '../redux/addRobot';
+import { fetchAddedRobot } from '../redux/robots';
 import { connect } from 'react-redux';
 
 class AddRobot extends React.Component {
   constructor() {
     super();
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.reloadPage = this.reloadPage.bind(false);
   }
   handleSubmit(event) {
     event.preventDefault();
@@ -19,13 +18,9 @@ class AddRobot extends React.Component {
     this.props.addRobot({
       newRobot,
     });
-    this.forceUpdate();
   }
-  reloadPage() {
-    window.location.reload(false);
-  }
+
   render() {
-    console.log('props~~~~~', this.props);
     return (
       <form id="robot-form" onSubmit={this.handleSubmit}>
         <label htmlFor="name">Robot Name: </label>
@@ -36,9 +31,7 @@ class AddRobot extends React.Component {
         <input name="fuelType" type="text" />
         <label htmlFor="fuelLevel">Fuel Level: </label>
         <input name="fuelLevel" type="text" />
-        <button type="submit" onClick={this.reloadPage}>
-          Add Robot
-        </button>
+        <button type="submit">Add Robot</button>
       </form>
     );
   }

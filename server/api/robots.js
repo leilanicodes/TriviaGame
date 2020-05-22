@@ -32,7 +32,6 @@ router.post('/', async (req, res, next) => {
       fuelType,
       fuelLevel,
     });
-
     res.status(201).json(newRobot);
   } catch (err) {
     next(err);

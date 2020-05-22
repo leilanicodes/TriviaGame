@@ -50,3 +50,11 @@ img {
   box-shadow: 1px 1px 1px 1px black;
   margin: 20px;
 }
+
+#delete {
+  background-color: orange;
+  font-size: 18px;
+  box-shadow: 1px 1px 1px 1px black;
+  display: flex;
+  align-items: flex-start;
+}

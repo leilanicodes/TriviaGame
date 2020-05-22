@@ -1,12 +1,11 @@
 import React from 'react';
-import { fetchAddedProject } from '../redux/addProject';
+import { fetchAddedProject } from '../redux/projects';
 import { connect } from 'react-redux';
 
 class AddProject extends React.Component {
   constructor() {
     super();
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.reloadPage = this.reloadPage.bind(this);
   }
   handleSubmit(event) {
     event.preventDefault();
@@ -21,9 +20,6 @@ class AddProject extends React.Component {
     this.props.addProject({
       newProject,
     });
-  }
-  reloadPage() {
-    window.location.reload(false);
   }
 
   render() {
@@ -42,9 +38,7 @@ class AddProject extends React.Component {
         </select>
         <label htmlFor="description">Description: </label>
         <textarea name="description" />
-        <button type="submit" onClick={this.reloadPage}>
-          Add Project
-        </button>
+        <button type="submit">Add Project</button>
       </form>
     );
   }
@@ -54,7 +48,4 @@ const mapDispatch = (dispatch) => ({
   addProject: (newProject) => dispatch(fetchAddedProject(newProject)),
 });
 
-// const mapState = (reduxState) => ({
-//   newRobot: reduxState.newRobot,
-// });
 export default connect(null, mapDispatch)(AddProject);
