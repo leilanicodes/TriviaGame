@@ -1,6 +1,5 @@
 module.exports = [
   {
-    id: 1,
     title: 'Search for Gasoline',
     deadline: '2020-05-20 05:00:00',
     priority: 1,
@@ -9,7 +8,6 @@ module.exports = [
       'This robot is thirsty and in need of fuel, but he is tired of the same old regular drink and is on a search for the most delicious gasoline.',
   },
   {
-    id: 2,
     title: 'Build a Robot Friend',
     deadline: '2020-05-23 09:00:00',
     priority: 3,
@@ -18,7 +16,6 @@ module.exports = [
       'This robot wants a new friend so he will build his own with his preferred customizations.',
   },
   {
-    id: 3,
     title: 'Win a Robot Race',
     deadline: '2020-05-22 02:00:00',
     priority: 2,

@@ -20,12 +20,12 @@ export const fetchSingleRobot = (robotId) => {
   };
 };
 
-export default function singleRobotReducer(state = {}, action) {
+export default function singleRobotReducer(robot = {}, action) {
   switch (action.type) {
     case SET_SINGLEROBOT: {
       return action.robot;
     }
     default:
-      return state;
+      return robot;
   }
 }

@@ -22,10 +22,10 @@ class singleProject extends React.Component {
       <div>
         <div>
           <h1>{title}</h1>
-          <h2>{deadline} </h2>
-          <h2>{priority}</h2>
-          <h3>{completed}</h3>
-          <p>{description}</p>
+          <h2>Deadline: {deadline} </h2>
+          <h2>Priority: {priority}</h2>
+          <h3>status: {completed ? 'complete' : 'In progress'}</h3>
+          <p>Description: {description}</p>
           <h3>Robots assigned to this project</h3>
           <div>
             {robots && robots.length

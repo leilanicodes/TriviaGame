@@ -11,14 +11,14 @@ class singleRobot extends React.Component {
   render() {
     let { name, imageUrl, fuelType, fuelLevel } = this.props.robot;
     let projects = this.props.robot.projects;
-    console.log(projects);
+
     return (
       <div>
-        <h2>{name}</h2>
+        <h2>Name: {name}</h2>
         <img src={imageUrl} />
-        <h3>{fuelType}</h3>
-        <h3>{fuelLevel}</h3>
-        <h3>Projects assigned to {name}</h3>
+        <h3>Fuel Type: {fuelType}</h3>
+        <h3>Fuel Level: {fuelLevel}</h3>
+        <h3>Projects assigned to {name}:</h3>
         <div>
           {projects && projects.length
             ? projects.map((project) => (

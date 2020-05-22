@@ -20,12 +20,12 @@ export const fetchSingleProject = (projectId) => {
   };
 };
 
-export default function singleProjectReducer(state = {}, action) {
+export default function singleProjectReducer(project = {}, action) {
   switch (action.type) {
     case SET_SINGLEPROJECT: {
       return action.project;
     }
     default:
-      return state;
+      return project;
   }
 }

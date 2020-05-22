@@ -20,12 +20,12 @@ export const fetchRobots = () => {
   };
 };
 
-export default function robotsReducer(state = [], action) {
+export default function robotsReducer(robots = [], action) {
   switch (action.type) {
     case SET_ROBOTS: {
       return action.robots;
     }
     default:
-      return state;
+      return robots;
   }
 }

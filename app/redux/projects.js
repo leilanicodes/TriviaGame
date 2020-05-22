@@ -20,12 +20,12 @@ export const fetchProjects = () => {
   };
 };
 
-export default function projectsReducer(state = [], action) {
+export default function projectsReducer(projects = [], action) {
   switch (action.type) {
     case SET_PROJECTS: {
       return action.projects;
     }
     default:
-      return state;
+      return projects;
   }
 }

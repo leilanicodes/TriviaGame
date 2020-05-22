@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Project } from './Project';
 import { fetchProjects } from '../redux/projects';
 import { withRouter } from 'react-router-dom';
+import AddProject from './AddProject';
 
 export class AllProjects extends React.Component {
   componentDidMount() {
@@ -13,6 +14,9 @@ export class AllProjects extends React.Component {
     return (
       <div>
         <h1>All Projects</h1>
+        <div>
+          <AddProject />
+        </div>
         {projects && projects.length
           ? projects.map((project) => (
               <Project key={project.id} project={project} />

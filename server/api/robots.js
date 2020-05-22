@@ -14,12 +14,28 @@ router.get('/', async (req, res, next) => {
 router.get('/:robotId', async (req, res, next) => {
   try {
     let robot = await Robot.findByPk(req.params.robotId, {
-      include: [{ model: Project }],
+      include: [Project],
     });
     if (!robot) return res.status(404);
     res.json(robot);
   } catch (error) {
     next(error);
+  }
+});
+
+router.post('/', async (req, res, next) => {
+  try {
+    const { name, imageUrl, fuelType, fuelLevel } = req.body.newRobot;
+    const newRobot = await Robot.create({
+      name,
+      imageUrl,
+      fuelType,
+      fuelLevel,
+    });
+
+    res.status(201).json(newRobot);
+  } catch (err) {
+    next(err);
   }
 });
 

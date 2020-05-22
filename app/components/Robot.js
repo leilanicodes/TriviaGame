@@ -7,11 +7,11 @@ export const Robot = (props) => {
   return (
     <div>
       <NavLink to={`/robots/${id}`}>
-        <h2>{name}</h2>
+        <h2>Name: {name}</h2>
       </NavLink>
       <img src={imageUrl} />
-      <h3>{fuelType}</h3>
-      <h3>{fuelLevel}</h3>
+      <h3>Fuel Type: {fuelType}</h3>
+      <h3>Fuel Level: {fuelLevel}</h3>
     </div>
   );
 };
