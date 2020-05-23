@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const SET_SINGLEPROJECT = 'SET_SINGLEPROJECT';
 
-export const setSingleProject = (project) => {
+const setSingleProject = (project) => {
   return {
     type: SET_SINGLEPROJECT,
     project,

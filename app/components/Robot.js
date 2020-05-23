@@ -1,7 +1,9 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { deleteRobotThunk } from '../redux/robots';
 
-export const Robot = (props) => {
+const Robot = (props) => {
   const { id, name, imageUrl, fuelType, fuelLevel } = props.robot;
 
   return (
@@ -9,7 +11,7 @@ export const Robot = (props) => {
       <NavLink to={`/robots/${id}`}>
         <h2>Name: {name}</h2>
       </NavLink>
-      <button type="button" id="delete">
+      <button type="button" id="delete" onClick={() => props.deleteRobot(id)}>
         X
       </button>
       <img src={imageUrl} />
@@ -18,3 +20,9 @@ export const Robot = (props) => {
     </div>
   );
 };
+
+const mapDispatch = (dispatch) => ({
+  deleteRobot: (robotId) => dispatch(deleteRobotThunk(robotId)),
+});
+
+export default connect(null, mapDispatch)(Robot);

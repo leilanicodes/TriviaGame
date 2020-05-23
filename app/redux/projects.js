@@ -2,18 +2,26 @@ import axios from 'axios';
 
 const SET_PROJECTS = 'SET_PROJECTS';
 const ADD_PROJECT = 'ADD_PROJECT';
+const DELETE_PROJECT = 'DELETE_PROJECT';
 
-export const setProjects = (projects) => {
+const setProjects = (projects) => {
   return {
     type: SET_PROJECTS,
     projects,
   };
 };
 
-export const addProject = (newProject) => {
+const addProject = (newProject) => {
   return {
     type: ADD_PROJECT,
     newProject,
+  };
+};
+
+const deleteProject = (project) => {
+  return {
+    type: DELETE_PROJECT,
+    projectId: project.id,
   };
 };
 
@@ -36,6 +44,12 @@ export default function projectsReducer(projects = [], action) {
     case ADD_PROJECT: {
       return [...projects, action.newProject];
     }
+    case DELETE_PROJECT: {
+      return [
+        ...projects,
+        projects.filter((project) => project.id !== action.projectId),
+      ];
+    }
     default:
       return projects;
   }
@@ -51,6 +65,17 @@ export const fetchAddedProject = (newProject) => {
       dispatch(addProject(addedProject));
     } catch (err) {
       console.log('Error adding a project', err);
+    }
+  };
+};
+
+export const deleteProjectThunk = (projectId) => {
+  return async (dispatch) => {
+    try {
+      await axios.delete(`/api/projects/${projectId}`);
+      dispatch(deleteProject(projectId));
+    } catch (err) {
+      console.log('Error deleting a project', err);
     }
   };
 };

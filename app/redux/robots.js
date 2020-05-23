@@ -2,18 +2,26 @@ import axios from 'axios';
 
 const SET_ROBOTS = 'SET_ROBOTS';
 const ADD_ROBOT = 'ADD_ROBOT';
+const DELETE_ROBOT = 'DELETE_ROBOT';
 
-export const setRobots = (robots) => {
+const setRobots = (robots) => {
   return {
     type: SET_ROBOTS,
     robots,
   };
 };
 
-export const addRobot = (newRobot) => {
+const addRobot = (newRobot) => {
   return {
     type: ADD_ROBOT,
     newRobot,
+  };
+};
+
+const deleteRobot = (robot) => {
+  return {
+    type: DELETE_ROBOT,
+    robotId: robot.id,
   };
 };
 
@@ -24,6 +32,9 @@ export default function robotsReducer(robots = [], action) {
     }
     case ADD_ROBOT: {
       return [...robots, action.newRobot];
+    }
+    case DELETE_ROBOT: {
+      return [...robots, robots.filter((robot) => robot.id !== action.robotId)];
     }
     default:
       return robots;
@@ -49,6 +60,17 @@ export const fetchAddedRobot = (newRobot) => {
       dispatch(addRobot(addedRobot));
     } catch (err) {
       console.log('Error adding a robot', err);
+    }
+  };
+};
+
+export const deleteRobotThunk = (robotId) => {
+  return async (dispatch) => {
+    try {
+      await axios.delete(`/api/robots/${robotId}`);
+      dispatch(deleteRobot(robotId));
+    } catch (err) {
+      console.log('Error deleting a robot', err);
     }
   };
 };

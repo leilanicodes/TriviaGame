@@ -1,7 +1,9 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { deleteProjectThunk } from '../redux/projects';
 
-export const Project = (props) => {
+const Project = (props) => {
   const {
     id,
     title,
@@ -16,6 +18,9 @@ export const Project = (props) => {
       <NavLink to={`/projects/${id}`}>
         <h1>{title}</h1>{' '}
       </NavLink>
+      <button type="button" id="delete" onClick={() => props.deleteProject(id)}>
+        X
+      </button>
       <h2>Deadline: {deadline} </h2>
       <h2>Priority: {priority}</h2>
       <h3>Status: {completed ? 'complete' : 'In progress'}</h3>
@@ -23,3 +28,9 @@ export const Project = (props) => {
     </div>
   );
 };
+
+const mapDispatch = (dispatch) => ({
+  deleteProject: (projectId) => dispatch(deleteProjectThunk(projectId)),
+});
+
+export default connect(null, mapDispatch)(Project);

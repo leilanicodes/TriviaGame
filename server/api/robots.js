@@ -38,4 +38,15 @@ router.post('/', async (req, res, next) => {
   }
 });
 
+router.delete('/:robotId', async (req, res, next) => {
+  try {
+    const robot = await Robot.findByPk(req.params.robotId);
+    if (!robot) return res.sendStatus(404);
+    await robot.destroy();
+    res.sendStatus(204);
+  } catch (err) {
+    next(err);
+  }
+});
+
 module.exports = router;

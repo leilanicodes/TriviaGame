@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const SET_SINGLEROBOT = 'SET_SINGLEROBOT';
 
-export const setSingleRobot = (robot) => {
+const setSingleRobot = (robot) => {
   return {
     type: SET_SINGLEROBOT,
     robot,
@@ -25,6 +25,7 @@ export default function singleRobotReducer(robot = {}, action) {
     case SET_SINGLEROBOT: {
       return action.robot;
     }
+
     default:
       return robot;
   }
