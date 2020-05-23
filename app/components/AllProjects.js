@@ -15,7 +15,7 @@ export class AllProjects extends React.Component {
       <div>
         <h1>All Projects</h1>
         <div>
-          <AddProject />
+          <AddProject key={projects.id} />
         </div>
         {projects && projects.length
           ? projects.map((project) => (

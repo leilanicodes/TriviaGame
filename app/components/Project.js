@@ -33,4 +33,8 @@ const mapDispatch = (dispatch) => ({
   deleteProject: (projectId) => dispatch(deleteProjectThunk(projectId)),
 });
 
+// const mapState = (reduxState) => ({
+//   project: reduxState.project,
+// });
+
 export default connect(null, mapDispatch)(Project);

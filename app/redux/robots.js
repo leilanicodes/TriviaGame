@@ -18,10 +18,10 @@ const addRobot = (newRobot) => {
   };
 };
 
-const deleteRobot = (robot) => {
+const deleteRobot = (deletedRobotId) => {
   return {
     type: DELETE_ROBOT,
-    robotId: robot.id,
+    deletedRobotId,
   };
 };
 
@@ -34,7 +34,10 @@ export default function robotsReducer(robots = [], action) {
       return [...robots, action.newRobot];
     }
     case DELETE_ROBOT: {
-      return [...robots, robots.filter((robot) => robot.id !== action.robotId)];
+      // return [...robots, robots.filter((robot) => robot.id !== action.robotId)];
+      console.log('delete robot reducer');
+      // console.log('action.robotId', action.robotId);
+      return robots.filter((robot) => robot.id !== action.deletedRobotId);
     }
     default:
       return robots;

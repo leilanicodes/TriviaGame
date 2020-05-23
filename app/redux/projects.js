@@ -18,10 +18,10 @@ const addProject = (newProject) => {
   };
 };
 
-const deleteProject = (project) => {
+const deleteProject = (deletedProjectId) => {
   return {
     type: DELETE_PROJECT,
-    projectId: project.id,
+    deletedProjectId,
   };
 };
 
@@ -45,10 +45,9 @@ export default function projectsReducer(projects = [], action) {
       return [...projects, action.newProject];
     }
     case DELETE_PROJECT: {
-      return [
-        ...projects,
-        projects.filter((project) => project.id !== action.projectId),
-      ];
+      return projects.filter(
+        (project) => project.id !== action.deletedProjectId
+      );
     }
     default:
       return projects;
