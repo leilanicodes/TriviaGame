@@ -55,6 +55,14 @@ img {
   background-color: orange;
   font-size: 18px;
   box-shadow: 1px 1px 1px 1px black;
+  color: black;
   display: flex;
   align-items: flex-start;
+}
+
+button {
+  margin: 5px;
+  background-color: #333333;
+  color: white;
+  height: 5vh;
 }

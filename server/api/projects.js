@@ -60,4 +60,15 @@ router.delete('/:projectId', async (req, res, next) => {
   }
 });
 
+router.put('/:projectId', async (req, res, next) => {
+  try {
+    const project = await Project.findByPk(req.params.projectId);
+    if (!project) return res.sendStatus(404);
+    await project.update(req.body);
+    res.json(project);
+  } catch (err) {
+    next(err);
+  }
+});
+
 module.exports = router;

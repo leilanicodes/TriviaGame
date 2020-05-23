@@ -7,8 +7,8 @@ import {
 } from 'react-router-dom';
 import AllRobots from './AllRobots';
 import AllProjects from './AllProjects';
-import singleRobot from './singleRobot';
-import singleProject from './singleProject';
+import SingleRobot from './SingleRobot';
+import SingleProject from './SingleProject';
 
 const Routes = () => {
   return (
@@ -28,8 +28,8 @@ const Routes = () => {
             <Route exact path="/" />
             <Route exact path="/robots" component={AllRobots} />
             <Route exact path="/projects" component={AllProjects} />
-            <Route path="/projects/:projectId" component={singleProject} />
-            <Route path="/robots/:robotId" component={singleRobot} />
+            <Route path="/projects/:projectId" component={SingleProject} />
+            <Route path="/robots/:robotId" component={SingleRobot} />
           </Switch>
         </main>
       </div>

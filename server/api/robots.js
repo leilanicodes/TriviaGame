@@ -16,7 +16,7 @@ router.get('/:robotId', async (req, res, next) => {
     let robot = await Robot.findByPk(req.params.robotId, {
       include: [Project],
     });
-    if (!robot) return res.status(404);
+    if (!robot) return res.sendStatus(404);
     res.json(robot);
   } catch (error) {
     next(error);
@@ -44,6 +44,17 @@ router.delete('/:robotId', async (req, res, next) => {
     if (!robot) return res.sendStatus(404);
     await robot.destroy();
     res.sendStatus(204);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.put('/:robotId', async (req, res, next) => {
+  try {
+    const robot = await Robot.findByPk(req.params.robotId);
+    if (!robot) return res.sendStatus(404);
+    await robot.update(req.body);
+    res.json(robot);
   } catch (err) {
     next(err);
   }

@@ -1,25 +1,24 @@
 import React from 'react';
-import { fetchAddedProject } from '../redux/projects';
+import { updateProjectThunk } from '../redux/singleProject';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
-class AddProject extends React.Component {
+class UpdateProject extends React.Component {
   constructor() {
     super();
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleSubmit(event) {
     event.preventDefault();
-    const newProject = {
+    const updatedProject = {
       title: event.target.title.value,
       deadline: event.target.deadline.value,
       priority: event.target.priority.value,
       completed: event.target.completed.value,
       description: event.target.description.value,
+      id: this.props.match.params.projectId,
     };
-
-    this.props.addProject({
-      newProject,
-    });
+    this.props.updateProject(updatedProject);
   }
 
   render() {
@@ -33,13 +32,13 @@ class AddProject extends React.Component {
         <input name="priority" type="number" min="1" max="10" />
         <label htmlFor="completed">Completed: </label>
         <select name="completed">
-          <option value="true">Completed</option>{' '}
+          <option value="true">Complete</option>{' '}
           <option value="false">In progress</option>
         </select>
         <label htmlFor="description">Description: </label>
         <textarea name="description" />
         <button type="submit" className="button">
-          Add Project
+          Save Changes
         </button>
       </form>
     );
@@ -47,7 +46,8 @@ class AddProject extends React.Component {
 }
 
 const mapDispatch = (dispatch) => ({
-  addProject: (newProject) => dispatch(fetchAddedProject(newProject)),
+  updateProject: (updatedProject) =>
+    dispatch(updateProjectThunk(updatedProject)),
 });
 
-export default connect(null, mapDispatch)(AddProject);
+export default withRouter(connect(null, mapDispatch)(UpdateProject));

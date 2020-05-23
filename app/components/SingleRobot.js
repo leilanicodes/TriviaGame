@@ -2,8 +2,9 @@ import React from 'react';
 import { fetchSingleRobot } from '../redux/singleRobot';
 import { connect } from 'react-redux';
 import { withRouter, NavLink } from 'react-router-dom';
+import UpdateRobot from './UpdateRobot';
 
-class singleRobot extends React.Component {
+class SingleRobot extends React.Component {
   componentDidMount() {
     const id = this.props.match.params.robotId;
     this.props.getSingleRobot(id);
@@ -25,9 +26,17 @@ class singleRobot extends React.Component {
                   <NavLink to={`/projects/${project.id}`}>
                     {project.title}
                   </NavLink>
+                  <button type="button" className="button">
+                    Unassign
+                  </button>
                 </div>
               ))
             : 'There are no projects currently assigned to this robot.'}
+        </div>
+        <div>
+          {' '}
+          Edit Robot:
+          <UpdateRobot />
         </div>
       </div>
     );
@@ -42,4 +51,4 @@ const mapDispatch = (dispatch) => ({
   getSingleRobot: (robotId) => dispatch(fetchSingleRobot(robotId)),
 });
 
-export default withRouter(connect(mapState, mapDispatch)(singleRobot));
+export default withRouter(connect(mapState, mapDispatch)(SingleRobot));

@@ -25,17 +25,6 @@ const deleteProject = (deletedProjectId) => {
   };
 };
 
-export const fetchProjects = () => {
-  return async (dispatch) => {
-    try {
-      const { data } = await axios.get('/api/projects');
-      dispatch(setProjects(data));
-    } catch (err) {
-      console.log('Error fetching projects', err);
-    }
-  };
-};
-
 export default function projectsReducer(projects = [], action) {
   switch (action.type) {
     case SET_PROJECTS: {
@@ -54,6 +43,17 @@ export default function projectsReducer(projects = [], action) {
   }
 }
 
+export const fetchProjects = () => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.get('/api/projects');
+      dispatch(setProjects(data));
+    } catch (err) {
+      console.log('Error fetching projects', err);
+    }
+  };
+};
+
 export const fetchAddedProject = (newProject) => {
   return async (dispatch) => {
     try {
@@ -63,7 +63,7 @@ export const fetchAddedProject = (newProject) => {
       );
       dispatch(addProject(addedProject));
     } catch (err) {
-      console.log('Error adding a project', err);
+      console.log('Error adding project', err);
     }
   };
 };
@@ -74,7 +74,7 @@ export const deleteProjectThunk = (projectId) => {
       await axios.delete(`/api/projects/${projectId}`);
       dispatch(deleteProject(projectId));
     } catch (err) {
-      console.log('Error deleting a project', err);
+      console.log('Error deleting project', err);
     }
   };
 };

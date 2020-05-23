@@ -34,9 +34,6 @@ export default function robotsReducer(robots = [], action) {
       return [...robots, action.newRobot];
     }
     case DELETE_ROBOT: {
-      // return [...robots, robots.filter((robot) => robot.id !== action.robotId)];
-      console.log('delete robot reducer');
-      // console.log('action.robotId', action.robotId);
       return robots.filter((robot) => robot.id !== action.deletedRobotId);
     }
     default:
@@ -62,7 +59,7 @@ export const fetchAddedRobot = (newRobot) => {
 
       dispatch(addRobot(addedRobot));
     } catch (err) {
-      console.log('Error adding a robot', err);
+      console.log('Error adding robot', err);
     }
   };
 };
@@ -73,7 +70,7 @@ export const deleteRobotThunk = (robotId) => {
       await axios.delete(`/api/robots/${robotId}`);
       dispatch(deleteRobot(robotId));
     } catch (err) {
-      console.log('Error deleting a robot', err);
+      console.log('Error deleting robot', err);
     }
   };
 };

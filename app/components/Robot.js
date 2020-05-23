@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { deleteRobotThunk } from '../redux/robots';
 
@@ -25,4 +25,4 @@ const mapDispatch = (dispatch) => ({
   deleteRobot: (robotId) => dispatch(deleteRobotThunk(robotId)),
 });
 
-export default connect(null, mapDispatch)(Robot);
+export default withRouter(connect(null, mapDispatch)(Robot));

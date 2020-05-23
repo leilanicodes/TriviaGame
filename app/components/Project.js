@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { deleteProjectThunk } from '../redux/projects';
 
@@ -23,8 +23,8 @@ const Project = (props) => {
       </button>
       <h2>Deadline: {deadline} </h2>
       <h2>Priority: {priority}</h2>
-      <h3>Status: {completed ? 'complete' : 'In progress'}</h3>
-      <p>Description: {description}</p>
+      <h3>Status: {completed ? 'Complete' : 'In progress'}</h3>
+      <h3>Description: {description}</h3>
     </div>
   );
 };
@@ -33,8 +33,4 @@ const mapDispatch = (dispatch) => ({
   deleteProject: (projectId) => dispatch(deleteProjectThunk(projectId)),
 });
 
-// const mapState = (reduxState) => ({
-//   project: reduxState.project,
-// });
-
-export default connect(null, mapDispatch)(Project);
+export default withRouter(connect(null, mapDispatch)(Project));

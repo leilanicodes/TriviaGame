@@ -1,23 +1,24 @@
 import React from 'react';
-import { fetchAddedRobot } from '../redux/robots';
+import { updateRobotThunk } from '../redux/singleRobot';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
-class AddRobot extends React.Component {
+class UpdateRobot extends React.Component {
   constructor() {
     super();
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleSubmit(event) {
     event.preventDefault();
-    const newRobot = {
+    const updatedRobot = {
       name: event.target.name.value,
       imageUrl: event.target.imageUrl.value,
       fuelType: event.target.fuelType.value,
       fuelLevel: event.target.fuelLevel.value,
+      id: this.props.match.params.robotId,
     };
-    this.props.addRobot({ newRobot });
+    this.props.updateRobot(updatedRobot);
   }
-
   render() {
     return (
       <form id="robot-form" onSubmit={this.handleSubmit}>
@@ -35,7 +36,7 @@ class AddRobot extends React.Component {
         <label htmlFor="fuelLevel">Fuel Level: </label>
         <input name="fuelLevel" type="number" min="0" max="100" />
         <button type="submit" className="button">
-          Add Robot
+          Save Changes
         </button>
       </form>
     );
@@ -43,7 +44,7 @@ class AddRobot extends React.Component {
 }
 
 const mapDispatch = (dispatch) => ({
-  addRobot: (newRobot) => dispatch(fetchAddedRobot(newRobot)),
+  updateRobot: (updatedRobot) => dispatch(updateRobotThunk(updatedRobot)),
 });
 
-export default connect(null, mapDispatch)(AddRobot);
+export default withRouter(connect(null, mapDispatch)(UpdateRobot));

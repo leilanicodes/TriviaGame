@@ -5,7 +5,7 @@ import singleRobotReducer from './singleRobot';
 import singleProjectReducer from './singleProject';
 
 const appReducer = combineReducers({
-  projects: projectsReducer, //this allows us to map state to props
+  projects: projectsReducer,
   robots: robotsReducer,
   robot: singleRobotReducer,
   project: singleProjectReducer,
