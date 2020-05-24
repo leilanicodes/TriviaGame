@@ -18,9 +18,11 @@ export class AllRobots extends React.Component {
         <div>
           <AddRobot key={robots.id} />
         </div>
-        {robots && robots.length
-          ? robots.map((robot) => <Robot key={robot.id} robot={robot} />)
-          : 'There are no robots registered in the database.'}
+        <div id="allRobots">
+          {robots && robots.length
+            ? robots.map((robot) => <Robot key={robot.id} robot={robot} />)
+            : 'There are no robots registered in the database.'}
+        </div>
       </div>
     );
   }

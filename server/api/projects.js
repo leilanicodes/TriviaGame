@@ -71,4 +71,16 @@ router.put('/:projectId', async (req, res, next) => {
   }
 });
 
+router.patch('/:projectId', async (req, res, next) => {
+  try {
+    const id = req.params.projectId;
+    const { updatedFields } = req.body;
+
+    await Project.update({ ...updatedFields }, { where: { id } });
+    res.sendStatus(204);
+  } catch (err) {
+    next(err);
+  }
+});
+
 module.exports = router;

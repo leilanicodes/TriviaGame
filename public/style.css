@@ -44,8 +44,8 @@ main {
 }
 
 img {
-  height: 350px;
-  width: 380px;
+  height: 200px;
+  width: 200px;
   border-radius: 5px;
   box-shadow: 1px 1px 1px 1px black;
   margin: 20px;
@@ -65,4 +65,8 @@ button {
   background-color: #333333;
   color: white;
   height: 5vh;
+}
+
+#allRobots {
+  display: inline-block;
 }

@@ -285,7 +285,7 @@ describe('Tier One: Robots', () => {
       expect(savedRobot.notARealAttribute).to.equal(undefined);
     });
 
-    it('name cannot be null or an empty string', async () => {
+    it('name must not be null or an empty', async () => {
       robot.name === null || '';
       let result, error;
       try {
