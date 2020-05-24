@@ -2,7 +2,6 @@ import React from 'react';
 import {
   fetchSingleProject,
   completeProjectThunk,
-  unassignRobotThunk,
 } from '../redux/singleProject';
 import { connect } from 'react-redux';
 import { withRouter, NavLink } from 'react-router-dom';
@@ -61,13 +60,7 @@ class SingleProject extends React.Component {
               ? robots.map((robot) => (
                   <div key={robot.id}>
                     <NavLink to={`/robots/${robot.id}`}>{robot.name}</NavLink>
-                    <button
-                      type="button"
-                      className="button"
-                      onClick={() =>
-                        this.props.unassignRobot(projectId, robot.id)
-                      }
-                    >
+                    <button type="button" className="button">
                       Unassign
                     </button>
                   </div>
@@ -94,8 +87,6 @@ const mapDispatch = (dispatch) => ({
   getSingleProject: (projectId) => dispatch(fetchSingleProject(projectId)),
   completeProject: (projectId, completed, project) =>
     dispatch(completeProjectThunk(projectId, completed, project)),
-  unassignRobot: (projectId, robotId) =>
-    dispatch(unassignRobotThunk(projectId, robotId)),
 });
 
 export default withRouter(connect(mapState, mapDispatch)(SingleProject));

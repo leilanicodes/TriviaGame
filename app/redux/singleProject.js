@@ -3,7 +3,6 @@ import axios from 'axios';
 const SET_SINGLEPROJECT = 'SET_SINGLEPROJECT';
 const UPDATE_PROJECT = 'UPDATE_PROJECT';
 const COMPLETE_PROJECT = 'COMPLETE_PROJECT';
-const UNASSIGN_ROBOT = 'UNASSIGN_ROBOT';
 
 const setSingleProject = (project) => {
   return {
@@ -27,13 +26,7 @@ const completeProject = (id, completed, project) => {
     project,
   };
 };
-const unassignRobot = (projectId, robot) => {
-  return {
-    type: UNASSIGN_ROBOT,
-    projectId,
-    robot,
-  };
-};
+
 export default function singleProjectReducer(project = {}, action) {
   switch (action.type) {
     case SET_SINGLEPROJECT: {
@@ -46,18 +39,6 @@ export default function singleProjectReducer(project = {}, action) {
       let updatedProject = action.project;
       updatedProject.completed = !updatedProject.completed;
       return { ...updatedProject };
-    }
-    // eslint-disable-next-line no-fallthrough
-    case UNASSIGN_ROBOT: {
-      if (project.id === action.projectId) {
-        return {
-          ...project.robots.filter(
-            (projectRobot) => projectRobot.id !== action.robot.id
-          ),
-        };
-      } else {
-        return project;
-      }
     }
     default:
       return project;
@@ -97,19 +78,6 @@ export const completeProjectThunk = (projectId, completed, project) => {
         updatedFields: { completed },
       });
       dispatch(completeProject(projectId, completed, project));
-    } catch (err) {
-      console.log('Error completing project', err);
-    }
-  };
-};
-
-export const unassignRobotThunk = (projectId, robot) => {
-  return async (dispatch) => {
-    try {
-      await axios.patch(`/api/projects/${projectId}`, {
-        updatedFields: { robot },
-      });
-      dispatch(unassignRobot(projectId, robot));
     } catch (err) {
       console.log('Error completing project', err);
     }

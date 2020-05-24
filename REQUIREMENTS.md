@@ -145,7 +145,7 @@ Congrats! You have completed your fourth vertical slice! Make sure to `commit -m
   - [x] Make an AJAX request that causes that project to be updated in the database
   - [x] Update the project in the current view without needing to refresh the page
 - [ ] In the single-project view, display an `Unassign` button next to each robot assigned to it, which unassigns that robot (in the database as well as this view)
-- [ ] In the single-project view, display a `Complete` button, which marks the project as completed (in the database as well as this view)
+- [x] In the single-project view, display a `Complete` button, which marks the project as completed (in the database as well as this view)
 
 #### Backend
 
@@ -193,7 +193,7 @@ Congrats! You have completed your fifth vertical slice! Make sure to `commit -m 
 - [ ] React (AllProjects): renders "No Projects" if passed no projects
 - [ ] Redux (robots): returns the initial state by default
 - [ ] Redux (projects): returns the initial state by default
-- [ ] Sequelize (Robot): name must not be null or empty
+- [x] Sequelize (Robot): name must not be null or empty
 - [ ] Sequelize (Project): deadline must be a valid date
 - [ ] Navigation: navbar to navigate to home, robots
 - [ ] Navigation: navbar to navigate to projects

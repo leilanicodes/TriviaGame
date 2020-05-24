@@ -190,8 +190,6 @@ describe('Tier One: Robots', () => {
       });
     });
 
-    // This test is expecting your component to render the robots from the
-    // Redux store. Now's a good time for a mapState.
     it('<AllRobots /> renders robots from the Redux store', async () => {
       const wrapper = mount(
         <Provider store={store}>
@@ -221,8 +219,6 @@ describe('Tier One: Robots', () => {
       rrd.BrowserRouter.restore();
     });
 
-    // This test expects that you've set up a Route for AllRobots.
-    // You should take a look at app/components/Routes.js
     it('renders <AllRobots /> at /robots', () => {
       const wrapper = mount(
         <Provider store={store}>
@@ -241,10 +237,6 @@ describe('Tier One: Robots', () => {
   });
 
   describe('Express API', () => {
-    // Let's test our Express routes WITHOUT actually using the database.
-    // By replacing the findAll methods on our Sequelize models with a spy,
-    // we can ensure that our API tests won't fail just because
-    // our Sequelize models haven't been implemented yet.
     const { findAll: robotFindAll } = Robot;
     beforeEach(() => {
       Robot.findAll = sinon.spy(() => Promise.resolve(robots));
@@ -253,8 +245,6 @@ describe('Tier One: Robots', () => {
       Robot.findAll = robotFindAll;
     });
 
-    // Consider writing your GET route in server/api/robots.js. And don't
-    // forget to apply the express router to your API in server/api/index.js!
     it('GET /api/robots responds with all robots', async () => {
       const response = await agent.get('/api/robots').expect(200);
       expect(response.body).to.deep.equal(robots);
@@ -339,11 +329,6 @@ describe('Tier One: Robots', () => {
     });
   });
   describe('Seed File', () => {
-    // Once you've set up the Robot Sequelize model, it's a good time to seed
-    // the database with some dummy data. Go edit seed.js. Note that the tests
-    // run the seed file on the TEST database. When you're ready to interact
-    // with the application in the browser, remember to "npm run seed" from the
-    // command line.
     beforeEach(seed);
 
     it('populates the database with at least three robots', async () => {
