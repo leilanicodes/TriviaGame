@@ -1,6 +1,5 @@
 const router = require('express').Router();
-const Robot = require('../db/robot');
-const Project = require('../db/project');
+const { Robot, Project, RobotProject } = require('../db');
 
 router.get('/', async (req, res, next) => {
   try {
@@ -33,6 +32,24 @@ router.post('/', async (req, res, next) => {
       fuelLevel,
     });
     res.status(201).json(newRobot);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.delete('/:robotId/unassign/:projectId', async (req, res, next) => {
+  try {
+    await RobotProject.destroy({
+      where: {
+        robotId: req.params.robotId,
+        projectId: req.params.projectId,
+      },
+    });
+    const robot = await Robot.findByPk(req.params.robotId, {
+      include: [Project],
+    });
+    if (!robot) return res.sendStatus(404);
+    res.json(robot);
   } catch (err) {
     next(err);
   }

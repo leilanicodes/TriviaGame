@@ -64,5 +64,18 @@
     "wait-for-expect": "^3.0.2",
     "webpack": "^4.39.2",
     "webpack-cli": "^3.3.7"
-  }
+  },
+  "directories": {
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leilanicodes/2004-fsa-ch-web-ft-jpfp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/leilanicodes/2004-fsa-ch-web-ft-jpfp/issues"
+  },
+  "homepage": "https://github.com/leilanicodes/2004-fsa-ch-web-ft-jpfp#readme"
 }

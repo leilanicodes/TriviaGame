@@ -9,6 +9,7 @@ import AllRobots from './AllRobots';
 import AllProjects from './AllProjects';
 import SingleRobot from './SingleRobot';
 import SingleProject from './SingleProject';
+import Home from './Home';
 
 const Routes = () => {
   return (
@@ -20,12 +21,8 @@ const Routes = () => {
           <NavLink to="/projects">Projects</NavLink>
         </nav>
         <main>
-          <h1>
-            Welcome to StackBot Project Management: your robot employees are
-            awaiting assignments!
-          </h1>
           <Switch>
-            <Route exact path="/" />
+            <Route exact path="/" component={Home} />
             <Route exact path="/robots" component={AllRobots} />
             <Route exact path="/projects" component={AllProjects} />
             <Route path="/projects/:projectId" component={SingleProject} />

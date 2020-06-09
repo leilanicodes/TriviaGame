@@ -9,6 +9,7 @@ const appReducer = combineReducers({
   robots: robotsReducer,
   robot: singleRobotReducer,
   project: singleProjectReducer,
+  results: projectsReducer,
 });
 
 export default appReducer;

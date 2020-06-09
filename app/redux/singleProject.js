@@ -27,24 +27,6 @@ const completeProject = (id, completed, project) => {
   };
 };
 
-export default function singleProjectReducer(project = {}, action) {
-  switch (action.type) {
-    case SET_SINGLEPROJECT: {
-      return action.project;
-    }
-    case UPDATE_PROJECT: {
-      return action.updatedProject;
-    }
-    case COMPLETE_PROJECT: {
-      let updatedProject = action.project;
-      updatedProject.completed = !updatedProject.completed;
-      return { ...updatedProject };
-    }
-    default:
-      return project;
-  }
-}
-
 export const fetchSingleProject = (projectId) => {
   return async (dispatch) => {
     try {
@@ -83,3 +65,34 @@ export const completeProjectThunk = (projectId, completed, project) => {
     }
   };
 };
+
+export const unassignRobotThunk = (projectId, robotId) => {
+  return async (dispatch) => {
+    try {
+      const { data: project } = await axios.delete(
+        `/api/projects/${projectId}/unassign/${robotId}`
+      );
+      dispatch(updateProject(project));
+    } catch (err) {
+      console.log('Error unassigning robot', err);
+    }
+  };
+};
+
+export default function singleProjectReducer(project = {}, action) {
+  switch (action.type) {
+    case SET_SINGLEPROJECT: {
+      return action.project;
+    }
+    case UPDATE_PROJECT: {
+      return action.updatedProject;
+    }
+    case COMPLETE_PROJECT: {
+      let updatedProject = action.project;
+      updatedProject.completed = !updatedProject.completed;
+      return { ...updatedProject };
+    }
+    default:
+      return project;
+  }
+}

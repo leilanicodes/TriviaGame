@@ -1,6 +1,5 @@
 const router = require('express').Router();
-const Project = require('../db/project');
-const Robot = require('../db/robot');
+const { Project, Robot, RobotProject } = require('../db');
 
 router.get('/', async (req, res, next) => {
   try {
@@ -44,6 +43,23 @@ router.post('/', async (req, res, next) => {
       description,
     });
     res.status(201).json(newProject);
+  } catch (err) {
+    next(err);
+  }
+});
+router.delete('/:projectId/unassign/:robotId', async (req, res, next) => {
+  try {
+    await RobotProject.destroy({
+      where: {
+        projectId: req.params.projectId,
+        robotId: req.params.robotId,
+      },
+    });
+    const project = await Project.findByPk(req.params.projectId, {
+      include: [Robot],
+    });
+    if (!project) return res.sendStatus(404);
+    res.json(project);
   } catch (err) {
     next(err);
   }

@@ -17,20 +17,6 @@ const updateRobot = (updatedRobot) => {
   };
 };
 
-export default function singleRobotReducer(robot = {}, action) {
-  switch (action.type) {
-    case SET_SINGLEROBOT: {
-      return action.robot;
-    }
-    case UPDATE_ROBOT: {
-      return action.updatedRobot;
-    }
-
-    default:
-      return robot;
-  }
-}
-
 export const fetchSingleRobot = (robotId) => {
   return async (dispatch) => {
     try {
@@ -56,3 +42,30 @@ export const updateRobotThunk = (updatedRobot) => {
     }
   };
 };
+
+export const unassignProjectThunk = (robotId, projectId) => {
+  return async (dispatch) => {
+    try {
+      const { data: robot } = await axios.delete(
+        `/api/robots/${robotId}/unassign/${projectId}`
+      );
+      dispatch(updateRobot(robot));
+    } catch (err) {
+      console.log('Error unassigning project', err);
+    }
+  };
+};
+
+export default function singleRobotReducer(robot = {}, action) {
+  switch (action.type) {
+    case SET_SINGLEROBOT: {
+      return action.robot;
+    }
+    case UPDATE_ROBOT: {
+      return action.updatedRobot;
+    }
+
+    default:
+      return robot;
+  }
+}
