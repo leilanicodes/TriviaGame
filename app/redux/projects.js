@@ -91,6 +91,36 @@ export const fetchTrivia = () => {
   };
 };
 
+export const fetchGeography = () => {
+  return async (dispatch) => {
+    try {
+      const { data: geography } = await axios.get(
+        'https://opentdb.com/api.php?amount=10&category=22&difficulty=medium&type=multiple'
+      );
+
+      console.log('geography data~~~~~~~', geography);
+
+      dispatch(setTrivia(geography));
+    } catch (err) {
+      console.log('Error fetching geography trivia', err);
+    }
+  };
+};
+
+export const fetchComputer = () => {
+  return async (dispatch) => {
+    try {
+      const { data: computer } = await axios.get(
+        'https://opentdb.com/api.php?amount=10&category=18&difficulty=medium&type=multiple'
+      );
+      console.log('geography data~~~~~~~', computer);
+      dispatch(setTrivia(computer));
+    } catch (err) {
+      console.log('Error fetching computer trivia', err);
+    }
+  };
+};
+
 export const fetchAddedTrivia = (newProject) => {
   return async (dispatch) => {
     try {

@@ -4,13 +4,27 @@
 }
 
 body {
-  background: linear-gradient(skyblue, white);
+  background-image: url('https://static.vecteezy.com/system/resources/previews/000/129/108/non_2x/trivia-papper-background-illustration-vector.jpg');
   height: 100vh;
   padding: 0;
   margin: 0;
   width: 100vw;
 }
 
+.trivia {
+  background-color: #ffcccb;
+  margin: 1rem 5rem;
+  padding: 0.5rem 2.5rem;
+  border: 2px solid black;
+  box-shadow: 0.2rem 0.3rem 0.5rem black;
+  border-radius: 2.5rem;
+}
+
+.btn {
+  padding: 1rem;
+  margin: 0.5rem;
+  box-shadow: 2px 2px 2px black;
+}
 nav {
   align-items: center;
   justify-content: space-evenly;
@@ -59,7 +73,8 @@ button {
   margin: 5px;
   background-color: #333333;
   color: white;
-  height: 5vh;
+  height: 10vh;
+  width: 10vw;
 }
 
 #allRobots {
