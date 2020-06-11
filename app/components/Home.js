@@ -23,19 +23,27 @@ export class Home extends React.Component {
   }
 
   handleChoice(choice, result, buttonId) {
-    console.log('choice', choice);
-
     let button = document.getElementById(buttonId);
-    console.log('result', result.correct_answer);
-    console.log('button', button);
+
     if (button && choice === result.correct_answer) {
       button.style.backgroundColor = 'green';
       button.style.color = 'white';
+      button.disabled = true;
     } else {
       button.style.backgroundColor = 'red';
     }
+    for (let i = 0; i < 4; i++) {
+      let id = buttonId[0] + '-' + i;
+      let element = document.getElementById(id);
+      element.disabled = true;
+      this.markCorrectAnswer(element, result.correct_answer);
+    }
   }
-
+  markCorrectAnswer(element, correctAnswer) {
+    if (element.innerHTML === correctAnswer) {
+      element.style.backgroundColor = 'green';
+    }
+  }
   render() {
     const results = this.props.results.results;
 
@@ -80,21 +88,6 @@ export class Home extends React.Component {
             <Button value="tv" color="info" onClick={this.handleClick}>
               TV
             </Button>
-            {/* <form id="trivia-form">
-              {/* <label htmlFor="select">Select a Category: </label> */}
-            {/* <select name="category" onChange={this.handleChange}>
-                <option defaultValue="selectCategory">
-                  Select a category. . .
-                </option>
-                <option value="geography">Geography</option>{' '}
-                <option value="games">Games</option>
-                <option value="animals">Animals</option>{' '}
-                <option value="computers">Computers</option>
-                <option value="history">History</option>{' '}
-                <option value="TV">TV</option>
-              </select> */}
-
-            {/* </form> */}
           </div>
           <div className="questions-wrapper">
             {results && results.length
@@ -110,16 +103,13 @@ export class Home extends React.Component {
                     </h1>
 
                     <form id="choice-form">
-                      {/* <select> */}
-                      {/* <option defaultValue="selectAnswer">
-                          Select an answer. . .
-                        </option> */}
                       {shuffle([
                         ...result.incorrect_answers,
                         result.correct_answer,
                       ]).map((choice, buttonIndex) => (
                         <div key={choice.incorrect_answers}>
                           <button
+                            disabled={false}
                             type="button"
                             className="choice"
                             id={questionIndex + '-' + buttonIndex}
@@ -137,7 +127,6 @@ export class Home extends React.Component {
                           </button>
                         </div>
                       ))}
-                      {/* </select> */}
                     </form>
                   </div>
                 ))
