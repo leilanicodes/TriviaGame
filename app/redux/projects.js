@@ -79,58 +79,27 @@ export const fetchAddedProject = (newProject) => {
   };
 };
 
-export const fetchTrivia = () => {
+export const fetchQuestions = (category) => {
   return async (dispatch) => {
+    let categoryIdsObject = {
+      geography: 22,
+      computers: 18,
+      history: 23,
+      games: 15,
+      tv: 14,
+      animals: 27,
+    };
+
+    let categoryId = categoryIdsObject[category];
+
     try {
-      const { data } = await axios.get('https://opentdb.com/api.php?amount=50');
-      console.log('data~~~~~~~', data);
+      const { data } = await axios.get(
+        `https://opentdb.com/api.php?amount=10&category=${categoryId}&difficulty=medium&type=multiple`
+      );
+
       dispatch(setTrivia(data));
     } catch (err) {
-      console.log('Error fetching trivia', err);
-    }
-  };
-};
-
-export const fetchGeography = () => {
-  return async (dispatch) => {
-    try {
-      const { data: geography } = await axios.get(
-        'https://opentdb.com/api.php?amount=10&category=22&difficulty=medium&type=multiple'
-      );
-
-      console.log('geography data~~~~~~~', geography);
-
-      dispatch(setTrivia(geography));
-    } catch (err) {
       console.log('Error fetching geography trivia', err);
-    }
-  };
-};
-
-export const fetchComputer = () => {
-  return async (dispatch) => {
-    try {
-      const { data: computer } = await axios.get(
-        'https://opentdb.com/api.php?amount=10&category=18&difficulty=medium&type=multiple'
-      );
-      console.log('geography data~~~~~~~', computer);
-      dispatch(setTrivia(computer));
-    } catch (err) {
-      console.log('Error fetching computer trivia', err);
-    }
-  };
-};
-
-export const fetchAddedTrivia = (newProject) => {
-  return async (dispatch) => {
-    try {
-      const { data: addedProject } = await axios.post(
-        '/api/projects/',
-        newProject
-      );
-      dispatch(addProject(addedProject));
-    } catch (err) {
-      console.log('Error adding project', err);
     }
   };
 };

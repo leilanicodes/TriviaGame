@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchTrivia, fetchGeography, fetchComputer } from '../redux/projects';
+import { fetchQuestions } from '../redux/projects';
 import { withRouter } from 'react-router-dom';
 import { Button } from 'reactstrap';
 
@@ -14,12 +14,7 @@ export class Home extends React.Component {
   handleClick(event) {
     console.log('event.target.value', event.target.value);
 
-    if (event.target.value === 'geography') {
-      this.props.getGeography();
-    }
-    if (event.target.value === 'computers') {
-      this.props.getComputer();
-    }
+    this.props.getQuestions(event.target.value);
   }
 
   handleChoice(choice, result, buttonId) {
@@ -145,9 +140,7 @@ const mapState = (reduxState) => {
 };
 
 const mapDispatch = (dispatch) => ({
-  getTrivia: () => dispatch(fetchTrivia()),
-  getGeography: () => dispatch(fetchGeography()),
-  getComputer: () => dispatch(fetchComputer()),
+  getQuestions: (category) => dispatch(fetchQuestions(category)),
 });
 
 export default withRouter(connect(mapState, mapDispatch)(Home));
