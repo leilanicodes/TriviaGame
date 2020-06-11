@@ -8,6 +8,7 @@ export class Home extends React.Component {
   constructor() {
     super();
     this.handleClick = this.handleClick.bind(this);
+    this.handleChoice = this.handleChoice.bind(this);
   }
 
   handleClick(event) {
@@ -18,6 +19,20 @@ export class Home extends React.Component {
     }
     if (event.target.value === 'computers') {
       this.props.getComputer();
+    }
+  }
+
+  handleChoice(choice, result, buttonId) {
+    console.log('choice', choice);
+
+    let button = document.getElementById(buttonId);
+    console.log('result', result.correct_answer);
+    console.log('button', button);
+    if (button && choice === result.correct_answer) {
+      button.style.backgroundColor = 'green';
+      button.style.color = 'white';
+    } else {
+      button.style.backgroundColor = 'red';
     }
   }
 
@@ -32,7 +47,7 @@ export class Home extends React.Component {
       <div className="trivia">
         <div>
           <h1>Ready to test your trivia skills? Select a category to begin.</h1>
-          <div id="button">
+          <div id="category">
             <Button
               type="button"
               color="success"
@@ -81,32 +96,48 @@ export class Home extends React.Component {
 
             {/* </form> */}
           </div>
-          <div>
+          <div className="questions-wrapper">
             {results && results.length
-              ? results.map((result) => (
-                  <div key={result.question}>
+              ? results.map((result, questionIndex) => (
+                  <div className="question" key={result.question}>
                     <h1>
-                      {result.question
-                        .replace(/(&quot\;)/g, '"')
-                        .replace(/&#039;/g, "'")}
+                      {questionIndex +
+                        1 +
+                        '. ' +
+                        result.question
+                          .replace(/(&quot\;)/g, '"')
+                          .replace(/&#039;/g, "'")}
                     </h1>
 
-                    <form>
-                      <select>
-                        <option defaultValue="selectAnswer">
+                    <form id="choice-form">
+                      {/* <select> */}
+                      {/* <option defaultValue="selectAnswer">
                           Select an answer. . .
-                        </option>
-                        {shuffle([
-                          ...result.incorrect_answers,
-                          result.correct_answer,
-                        ]).map((choice) => (
-                          <option key={choice.incorrect_answers}>
+                        </option> */}
+                      {shuffle([
+                        ...result.incorrect_answers,
+                        result.correct_answer,
+                      ]).map((choice, buttonIndex) => (
+                        <div key={choice.incorrect_answers}>
+                          <button
+                            type="button"
+                            className="choice"
+                            id={questionIndex + '-' + buttonIndex}
+                            onClick={() => {
+                              this.handleChoice(
+                                choice,
+                                result,
+                                questionIndex + '-' + buttonIndex
+                              );
+                            }}
+                          >
                             {choice
                               .replace(/(&quot\;)/g, '"')
                               .replace(/&#039;/g, "'")}
-                          </option>
-                        ))}
-                      </select>
+                          </button>
+                        </div>
+                      ))}
+                      {/* </select> */}
                     </form>
                   </div>
                 ))
