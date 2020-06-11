@@ -24,13 +24,17 @@ export class Questions extends React.Component {
     for (let i = 0; i < 4; i++) {
       let id = buttonId[0] + '-' + i;
       let element = document.getElementById(id);
-      element.disabled = true;
+
       this.markCorrectAnswer(element, result.correct_answer);
+      element.disabled = true;
     }
   }
 
   markCorrectAnswer(element, correctAnswer) {
-    if (element.innerHTML === correctAnswer) {
+    if (
+      element.innerHTML === correctAnswer ||
+      element.getAttribute('choice') === correctAnswer
+    ) {
       element.style.backgroundColor = 'green';
     }
   }
@@ -71,6 +75,8 @@ export class Questions extends React.Component {
                           disabled={false}
                           type="button"
                           className="choice"
+                          choice={choice}
+                          dangerouslySetInnerHTML={{ __html: choice }}
                           id={questionIndex + '-' + buttonIndex}
                           onClick={() => {
                             this.handleChoice(
@@ -80,13 +86,13 @@ export class Questions extends React.Component {
                             );
                           }}
                         >
-                          {choice
+                          {/* {choice
                             .replace(/&quot;/g, '"')
                             .replace(/&#039;/g, "'")
                             .replace(/&lt;/g, '<')
                             .replace(/&gt;/g, '>')
                             .replace(/&lrm;/g, '')
-                            .replace(/&oacute;/g, 'ó')}
+                            .replace(/&oacute;/g, 'ó')} */}
                         </button>
                       </div>
                     ))}
