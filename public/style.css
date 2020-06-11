@@ -16,6 +16,11 @@ h1 {
   align-items: center;
 }
 
+h2 {
+  display: flex;
+  align-items: center;
+  padding: 2.5rem;
+}
 .trivia {
   background-color: #ffcccb;
   margin: 1rem 5rem;
@@ -23,6 +28,9 @@ h1 {
   border: 2px solid black;
   box-shadow: 0.2rem 0.3rem 0.5rem black;
   border-radius: 2.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .questions-wrapper {
   display: flex;
@@ -30,15 +38,21 @@ h1 {
   flex-direction: column;
 }
 #category .btn {
-  font-size: 1.5rem;
+  font-size: 1.7rem;
   padding: 1rem;
   margin: 0.5rem;
   box-shadow: 2px 2px 2px black;
+  width: 30%;
+  height: 7rem;
 }
-
+#category div {
+  width: 100%;
+}
 #category {
   display: flex;
   align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 .question {
   max-width: 900px;
@@ -71,7 +85,7 @@ nav {
   color: #c0c0c0;
   font-size: 20px;
   display: flex;
-  height: 80px;
+  height: 60px;
   padding: 10px;
 }
 
@@ -89,6 +103,7 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  padding-bottom: 5rem;
 }
 
 img {
@@ -107,14 +122,3 @@ img {
   display: flex;
   align-items: flex-start;
 }
-
-button {
-  margin: 5px;
-  border: 2px solid black;
-  height: 20vh;
-  width: 20vw;
-}
-
-/* #allRobots {
-  display: inline-block;
-} */
