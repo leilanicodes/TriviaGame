@@ -1,15 +1,8 @@
 import { combineReducers } from 'redux';
-import projectsReducer from './projects';
-import robotsReducer from './robots';
-import singleRobotReducer from './singleRobot';
-import singleProjectReducer from './singleProject';
+import triviaReducer from './trivia';
 
 const appReducer = combineReducers({
-  projects: projectsReducer,
-  robots: robotsReducer,
-  robot: singleRobotReducer,
-  project: singleProjectReducer,
-  results: projectsReducer,
+  results: triviaReducer,
 });
 
 export default appReducer;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchQuestions } from '../redux/projects';
+import { fetchQuestions } from '../redux/trivia';
 import { withRouter, NavLink } from 'react-router-dom';
 import { Button } from 'reactstrap';
 
