@@ -1,14 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
-
 import { withRouter, NavLink } from 'react-router-dom';
 import { Button } from 'reactstrap';
+import ScoreModal from './Modal';
 
 export class Questions extends React.Component {
   constructor() {
     super();
 
     this.handleChoice = this.handleChoice.bind(this);
+    this.handleModal = this.handleModal.bind(this);
   }
 
   handleChoice(choice, result, buttonId) {
@@ -28,6 +29,10 @@ export class Questions extends React.Component {
       this.markCorrectAnswer(element, result.correct_answer);
       element.disabled = true;
     }
+  }
+
+  handleModal(event) {
+    console.log('test');
   }
 
   markCorrectAnswer(element, correctAnswer) {
@@ -100,9 +105,7 @@ export class Questions extends React.Component {
                 </div>
               ))
             : 'A category has not been selected yet.'}
-          <Button type="button" id="score" color="secondary">
-            Check Your Score
-          </Button>
+          <ScoreModal buttonLabel="Check Your Score"></ScoreModal>
         </div>
       </div>
     );
