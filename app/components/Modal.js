@@ -8,7 +8,7 @@ const ScoreModal = (props) => {
   const [modal, setModal] = useState(false);
 
   const toggle = () => setModal(!modal);
-  console.log(props);
+
   return (
     <div>
       <Button color="info" onClick={toggle}>

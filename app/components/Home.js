@@ -11,8 +11,6 @@ export class Home extends React.Component {
   }
 
   handleClick(event) {
-    console.log('event.target.value', event.target.value);
-
     this.props.getQuestions(event.target.value);
   }
 

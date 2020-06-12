@@ -11,7 +11,6 @@ export class Questions extends React.Component {
       numberCorrect: 0,
     };
     this.handleChoice = this.handleChoice.bind(this);
-    // this.calculateScore = this.calculateScore.bind(this);
   }
 
   handleChoice(choice, result, buttonId) {
@@ -33,25 +32,6 @@ export class Questions extends React.Component {
       element.disabled = true;
     }
   }
-
-  // calculateScore() {
-  //   console.log('calculatingScore');
-  //   let count = 0;
-  //   let buttons = document.getElementsByClassName('choice');
-  //   if (buttons.length === 0) {
-  //     return null;
-  //   }
-  //   console.log('buttons:', buttons);
-  //   for (let i = 0; i < 40; i++) {
-  //     if (
-  //       buttons[i].style.backgroundColor === 'green' &&
-  //       buttons[i].style.color === 'white'
-  //     ) {
-  //       count++;
-  //     }
-  //   }
-  //   return (count / 10) * 100;
-  // }
 
   markCorrectAnswer(element, correctAnswer) {
     if (

@@ -47,7 +47,7 @@ export const fetchQuestions = (category) => {
 
         result.shuffledAnswers = shuffledArr;
       });
-      console.log('data', data);
+
       dispatch(setTrivia(data));
     } catch (err) {
       console.log('Error fetching geography trivia', err);
