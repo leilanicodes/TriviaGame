@@ -38,6 +38,16 @@ export const fetchQuestions = (category) => {
         `https://opentdb.com/api.php?amount=10&category=${categoryId}&difficulty=medium&type=multiple`
       );
 
+      const shuffle = (arr) => arr.sort(() => 0.5 - Math.random());
+      data.results.forEach((result) => {
+        let shuffledArr = shuffle([
+          ...result.incorrect_answers,
+          result.correct_answer,
+        ]);
+
+        result.shuffledAnswers = shuffledArr;
+      });
+      console.log('data', data);
       dispatch(setTrivia(data));
     } catch (err) {
       console.log('Error fetching geography trivia', err);

@@ -1,21 +1,24 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter, NavLink } from 'react-router-dom';
-import { Button } from 'reactstrap';
+
 import ScoreModal from './Modal';
 
 export class Questions extends React.Component {
   constructor() {
     super();
-
+    this.state = {
+      numberCorrect: 0,
+    };
     this.handleChoice = this.handleChoice.bind(this);
-    this.handleModal = this.handleModal.bind(this);
+    // this.calculateScore = this.calculateScore.bind(this);
   }
 
   handleChoice(choice, result, buttonId) {
     let button = document.getElementById(buttonId);
 
     if (button && choice === result.correct_answer) {
+      this.setState({ numberCorrect: this.state.numberCorrect + 1 });
       button.style.backgroundColor = 'green';
       button.style.color = 'white';
       button.disabled = true;
@@ -31,9 +34,24 @@ export class Questions extends React.Component {
     }
   }
 
-  handleModal(event) {
-    console.log('test');
-  }
+  // calculateScore() {
+  //   console.log('calculatingScore');
+  //   let count = 0;
+  //   let buttons = document.getElementsByClassName('choice');
+  //   if (buttons.length === 0) {
+  //     return null;
+  //   }
+  //   console.log('buttons:', buttons);
+  //   for (let i = 0; i < 40; i++) {
+  //     if (
+  //       buttons[i].style.backgroundColor === 'green' &&
+  //       buttons[i].style.color === 'white'
+  //     ) {
+  //       count++;
+  //     }
+  //   }
+  //   return (count / 10) * 100;
+  // }
 
   markCorrectAnswer(element, correctAnswer) {
     if (
@@ -47,15 +65,13 @@ export class Questions extends React.Component {
   render() {
     const results = this.props.results.results;
 
-    const shuffle = (arr) => arr.sort(() => 0.5 - Math.random());
-
     return (
       <div>
         <nav>
           <NavLink to="/">Back to Categories</NavLink>
         </nav>
 
-        <div className="questions-wrapper trivia">
+        <div className="questions-wrapper trivia" key={results}>
           {results && results.length
             ? results.map((result, questionIndex) => (
                 <div className="question" key={result.question}>
@@ -71,10 +87,7 @@ export class Questions extends React.Component {
                   </h2>
 
                   <form id="choice-form">
-                    {shuffle([
-                      ...result.incorrect_answers,
-                      result.correct_answer,
-                    ]).map((choice, buttonIndex) => (
+                    {result.shuffledAnswers.map((choice, buttonIndex) => (
                       <div key={choice.incorrect_answers}>
                         <button
                           disabled={false}
@@ -105,7 +118,10 @@ export class Questions extends React.Component {
                 </div>
               ))
             : 'A category has not been selected yet.'}
-          <ScoreModal buttonLabel="Check Your Score"></ScoreModal>
+          <ScoreModal
+            buttonLabel="Check Your Score"
+            score={this.state.numberCorrect * 10}
+          />
         </div>
       </div>
     );
